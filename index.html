@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenFlow - Your Personal Yoga Journey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .skeumorphic {
+            background: linear-gradient(to bottom, #f4f4f4, #e4e4e4);
+            border: 1px solid #d1d1d1;
+            box-shadow: 
+                inset 0 1px 0 rgba(255,255,255,0.9),
+                0 1px 3px rgba(0,0,0,0.1);
+        }
+        .timer-display {
+            font-family: 'Digital-7', monospace;
+            background: #2d2d2d;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 
+                inset 0 0 10px rgba(0,0,0,0.8),
+                0 2px 4px rgba(0,0,0,0.2);
+        }
+        .pose-card {
+            transition: transform 0.3s;
+        }
+        .pose-card:hover {
+            transform: translateY(-5px);
+        }
+        .progress-bar {
+            background: linear-gradient(to right, #4CAF50, #8BC34A);
+            border-radius: 20px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .meditation-player {
+            background: linear-gradient(45deg, #1a1a1a, #2d2d2d);
+            border-radius: 15px;
+            box-shadow: 
+                0 4px 15px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <nav class="skeumorphic bg-white p-4 fixed w-full top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-emerald-600">ZenFlow</h1>
+            <div class="flex space-x-6">
+                <a href="#routines" class="hover:text-emerald-600">Routines</a>
+                <a href="#poses" class="hover:text-emerald-600">Poses</a>
+                <a href="#meditation" class="hover:text-emerald-600">Meditation</a>
+                <a href="#progress" class="hover:text-emerald-600">Progress</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="mt-20 container mx-auto p-6">
+        <!-- Timer Section -->
+        <section class="mb-12">
+            <div class="timer-display text-center text-4xl mb-4">
+                <span id="minutes">00</span>:<span id="seconds">00</span>
+            </div>
+            <div class="flex justify-center space-x-4">
+                <button onclick="startTimer()" class="skeumorphic px-6 py-2 rounded-lg bg-emerald-500 text-white">Start</button>
+                <button onclick="pauseTimer()" class="skeumorphic px-6 py-2 rounded-lg bg-yellow-500 text-white">Pause</button>
+                <button onclick="resetTimer()" class="skeumorphic px-6 py-2 rounded-lg bg-red-500 text-white">Reset</button>
+            </div>
+        </section>
+
+        <!-- Personalized Routines -->
+        <section id="routines" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Your Personalized Routine</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="pose-card skeumorphic p-6 rounded-xl">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b" class="rounded-lg w-full h-48 object-cover mb-4" alt="Yoga Pose">
+                    <h3 class="text-xl font-semibold mb-2">Mountain Pose</h3>
+                    <p class="text-gray-600 mb-4">Start with this fundamental standing pose to improve posture.</p>
+                    <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm">5 mins</span>
+                </div>
+                <!-- Add more routine cards -->
+            </div>
+        </section>
+
+        <!-- Meditation Section -->
+        <section id="meditation" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Meditation</h2>
+            <div class="meditation-player p-6 text-white">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="text-xl">Mindful Breathing</h3>
+                        <p class="text-gray-400">10 minutes guided meditation</p>
+                    </div>
+                    <div class="flex space-x-4">
+                        <button class="text-2xl"><i class="bi bi-skip-backward-fill"></i></button>
+                        <button class="text-3xl" id="playButton"><i class="bi bi-play-circle-fill"></i></button>
+                        <button class="text-2xl"><i class="bi bi-skip-forward-fill"></i></button>
+                    </div>
+                </div>
+                <div class="bg-gray-700 h-2 rounded-full">
+                    <div class="bg-emerald-500 w-1/3 h-full rounded-full"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Tracking -->
+        <section id="progress" class="mb-12">
+            <h2 class="text-3xl font-bold mb-6">Your Progress</h2>
+            <div class="skeumorphic p-6 rounded-xl">
+                <div class="mb-4">
+                    <h3 class="text-lg font-semibold mb-2">Weekly Practice</h3>
+                    <div class="bg-gray-200 rounded-full h-4">
+                        <div class="progress-bar h-full w-3/4"></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-7 gap-2">
+                    <!-- Progress calendar -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let timer;
+        let minutes = 0;
+        let seconds = 0;
+        let isRunning = false;
+
+        function startTimer() {
+            if (!isRunning) {
+                isRunning = true;
+                timer = setInterval(updateTimer, 1000);
+            }
+        }
+
+        function pauseTimer() {
+            isRunning = false;
+            clearInterval(timer);
+        }
+
+        function resetTimer() {
+            isRunning = false;
+            clearInterval(timer);
+            minutes = 0;
+            seconds = 0;
+            updateDisplay();
+        }
+
+        function updateTimer() {
+            seconds++;
+            if (seconds === 60) {
+                seconds = 0;
+                minutes++;
+            }
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Meditation player
+        const playButton = document.getElementById('playButton');
+        let isPlaying = false;
+
+        playButton.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            playButton.innerHTML = isPlaying ? 
+                '<i class="bi bi-pause-circle-fill"></i>' : 
+                '<i class="bi bi-play-circle-fill"></i>';
+        });
+
+        // Initialize display
+        updateDisplay();
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
